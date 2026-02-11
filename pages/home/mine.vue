@@ -16,7 +16,7 @@
 				<text class="setting-arrow">></text>
 			</view>
 			
-			<view class="setting-item" @tap="showExportDialog">
+			<view class="setting-item" @tap="openExportDialog">
 				<text class="setting-label">导出笔记</text>
 				<text class="setting-arrow">></text>
 			</view>
@@ -71,8 +71,8 @@
 				}
 			},
 			methods: {
-				// 跳转到修改密码
-				goToChangePassword() {
+			// 跳转到修改密码
+			goToChangePassword() {
 				uni.navigateTo({
 					url: '/pages/settings/change-password'
 				});
@@ -83,16 +83,17 @@
 				uni.showModal({
 					title: '关于应用',
 					content: '笔记App v1.0.0\n\n一个安全的本地笔记应用，支持密码保护和数据加密。',
-				confirmText: '确定',
-				success: function(res) {
-				if (res.confirm) {
-					console.log('用户点击确定');
-				}
-			});
+					confirmText: '确定',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						}
+					}
+				});
 			},
 			
 			// 显示导出笔记弹窗
-			showExportDialog() {
+			openExportDialog() {
 				this.showExportDialog = true;
 			},
 			
@@ -127,21 +128,79 @@
 			
 			// 下载文件
 			downloadFile(filename, content) {
-				uni.downloadFile({
-					url: 'data:text/plain;charset=utf-8,' + encodeURIComponent(content),
-					filePath: `${uni.env.USER_DATA_PATH}/${filename}`,
-					success: (res) => {
-						uni.showToast({
-							title: '导出成功',
-							icon: 'success'
+				// 尝试使用不同的方法来实现文件导出
+				try {
+					// 方法1: 尝试使用文件系统API
+					if (typeof plus !== 'undefined') {
+						// 使用plus.io保存文件
+						plus.io.requestFileSystem(plus.io.PRIVATE_DOC, (fs) => {
+							fs.root.getFile(filename, {create: true}, (fileEntry) => {
+								fileEntry.createWriter((writer) => {
+									writer.onwriteend = function() {
+										uni.showToast({
+											title: '导出成功',
+											icon: 'success'
+										});
+										uni.showModal({
+											title: '导出成功',
+											content: `文件已保存到: ${fileEntry.fullPath}`,
+											confirmText: '确定'
+										});
+									};
+									writer.onerror = function(e) {
+										console.error('写入文件失败:', e);
+										uni.showToast({
+											title: '导出失败',
+											icon: 'none'
+										});
+									};
+									writer.write(content);
+								}, (error) => {
+									console.error('创建文件写入器失败:', error);
+									// 降级到方法2
+									this.fallbackDownload(filename, content);
+								});
+							}, (error) => {
+								console.error('获取文件失败:', error);
+								// 降级到方法2
+								this.fallbackDownload(filename, content);
+							});
+						}, (error) => {
+							console.error('请求文件系统失败:', error);
+							// 降级到方法2
+							this.fallbackDownload(filename, content);
 						});
-					},
-					fail: (err) => {
-						uni.showToast({
-							title: '导出失败',
-							icon: 'none'
-						});
+					} else {
+						// 降级到方法2
+						this.fallbackDownload(filename, content);
 					}
+				} catch (error) {
+					console.error('导出失败:', error);
+					// 降级到方法2
+					this.fallbackDownload(filename, content);
+				}
+			},
+			
+			// 降级下载方法
+			fallbackDownload(filename, content) {
+				// 使用Blob创建文件
+				const blob = new Blob([content], { type: 'application/json;charset=utf-8' });
+				const url = URL.createObjectURL(blob);
+				
+				// 创建下载链接
+				const link = document.createElement('a');
+				link.href = url;
+				link.download = filename;
+				link.click();
+				
+				// 释放URL对象
+				setTimeout(() => {
+					URL.revokeObjectURL(url);
+				}, 100);
+				
+				uni.showToast({
+					title: '导出成功',
+					icon: 'success'
 				});
 			}
 		}
