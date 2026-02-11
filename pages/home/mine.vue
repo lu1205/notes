@@ -377,57 +377,79 @@ export default {
 </script>
 
 <style>
+/* 导入Inter字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+	font-family: 'Inter', sans-serif;
+	box-sizing: border-box;
+}
+
 .content {
 	flex: 1;
-	background-color: #f5f5f5;
+	background-color: #F0FDFA;
 }
 
 .user-section {
-	background-color: #007aff;
-	padding: 60rpx 40rpx;
+	background-color: #0D9488;
+	padding: 80rpx 40rpx;
 	color: #fff;
+	position: relative;
 }
 
 .user-avatar {
-	width: 120rpx;
-	height: 120rpx;
-	background-color: rgba(255, 255, 255, 0.3);
+	width: 140rpx;
+	height: 140rpx;
+	background-color: rgba(255, 255, 255, 0.2);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 30rpx;
+	margin-bottom: 36rpx;
+	position: relative;
 }
 
 .avatar-text {
-	font-size: 48rpx;
-	font-weight: bold;
+	font-size: 52rpx;
+	font-weight: 600;
+}
+
+.user-info {
+	position: relative;
 }
 
 .user-name {
-	font-size: 32rpx;
-	font-weight: bold;
-	margin-bottom: 10rpx;
+	font-size: 36rpx;
+	font-weight: 600;
+	margin-bottom: 12rpx;
 }
 
 .user-desc {
-	font-size: 24rpx;
-	opacity: 0.8;
+	font-size: 26rpx;
+	opacity: 0.9;
 }
 
 .settings-list {
 	background-color: #fff;
-	margin-top: 20rpx;
-	border-radius: 10rpx;
+	margin: -30rpx 20rpx 20rpx;
+	border-radius: 12rpx;
 	overflow: hidden;
+	border: 1rpx solid #E0F2F1;
+	position: relative;
 }
 
 .setting-item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 30rpx 40rpx;
-	border-bottom: 1rpx solid #f0f0f0;
+	padding: 36rpx 40rpx;
+	border-bottom: 1rpx solid #E0F2F1;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.setting-item:hover {
+	background-color: #F8FFFE;
 }
 
 .setting-item:last-child {
@@ -435,23 +457,30 @@ export default {
 }
 
 .setting-label {
-	font-size: 28rpx;
-	color: #333;
+	font-size: 30rpx;
+	color: #134E4A;
+	font-weight: 500;
 }
 
 .setting-arrow {
-	font-size: 28rpx;
-	color: #999;
+	font-size: 24rpx;
+	color: #64748B;
+	transition: all 0.2s ease;
+}
+
+.setting-item:hover .setting-arrow {
+	transform: translateX(4rpx);
 }
 
 .app-info {
 	margin-top: 60rpx;
 	text-align: center;
+	padding-bottom: 40rpx;
 }
 
 .app-version {
 	font-size: 24rpx;
-	color: #999;
+	color: #64748B;
 }
 
 /* 导出笔记弹窗样式 */
@@ -466,82 +495,246 @@ export default {
 	align-items: center;
 	justify-content: center;
 	z-index: 999;
+	padding: 20rpx;
 }
 
 .dialog-content {
 	background-color: #fff;
-	border-radius: 20rpx;
-	width: 80%;
-	padding: 40rpx;
+	border-radius: 12rpx;
+	width: 100%;
+	max-width: 500rpx;
+	padding: 48rpx;
+	border: 1rpx solid #E0F2F1;
+	transition: all 0.2s ease;
 }
 
 .dialog-title {
-	font-size: 32rpx;
-	font-weight: bold;
-	color: #333;
+	font-size: 34rpx;
+	font-weight: 600;
+	color: #134E4A;
 	text-align: center;
-	margin-bottom: 40rpx;
+	margin-bottom: 48rpx;
 }
 
 .dialog-options {
-	margin-bottom: 30rpx;
+	margin-bottom: 40rpx;
 }
 
 .option-item {
 	display: flex;
 	align-items: center;
-	margin-bottom: 30rpx;
+	margin-bottom: 36rpx;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.option-item:hover {
+	transform: translateX(8rpx);
 }
 
 .option-radio {
-	width: 32rpx;
-	height: 32rpx;
-	border: 2rpx solid #ddd;
+	width: 36rpx;
+	height: 36rpx;
+	border: 2rpx solid #E0F2F1;
 	border-radius: 50%;
-	margin-right: 20rpx;
+	margin-right: 24rpx;
+	position: relative;
+	transition: all 0.2s ease;
 }
 
 .option-radio.selected {
-	background-color: #007aff;
-	border-color: #007aff;
+	background-color: #0D9488;
+	border-color: #0D9488;
+}
+
+.option-radio.selected::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 16rpx;
+	height: 16rpx;
+	background-color: #fff;
+	border-radius: 50%;
 }
 
 .option-label {
-	font-size: 28rpx;
-	color: #333;
+	font-size: 30rpx;
+	color: #134E4A;
+	font-weight: 500;
 }
 
 .dialog-buttons {
 	display: flex;
-	margin-bottom: 20rpx;
+	gap: 20rpx;
 }
 
 .dialog-btn {
 	flex: 1;
-	padding: 20rpx;
+	padding: 24rpx;
 	text-align: center;
-	border-radius: 10rpx;
-	margin: 0 10rpx;
+	border-radius: 8rpx;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	cursor: pointer;
 }
 
 .cancel-btn {
-	background-color: #f5f5f5;
+	background-color: #F8FFFE;
+	color: #64748B;
+	border: 1rpx solid #E0F2F1;
+}
+
+.cancel-btn:hover {
+	background-color: #E0F2F1;
 }
 
 .confirm-btn {
-	background-color: #007aff;
+	background-color: #0D9488;
+	color: #fff;
+}
+
+.confirm-btn:hover {
+	background-color: #0F766E;
 }
 
 .btn-text {
-	font-size: 28rpx;
-	font-weight: bold;
+	font-size: 30rpx;
 }
 
-.cancel-btn .btn-text {
-	color: #666;
+/* 响应式设计 */
+@media screen and (max-width: 375px) {
+	.user-section {
+		padding: 60rpx 30rpx;
+	}
+
+	.user-avatar {
+		width: 120rpx;
+		height: 120rpx;
+		margin-bottom: 30rpx;
+	}
+
+	.avatar-text {
+		font-size: 48rpx;
+	}
+
+	.user-name {
+		font-size: 32rpx;
+		margin-bottom: 10rpx;
+	}
+
+	.user-desc {
+		font-size: 24rpx;
+	}
+
+	.settings-list {
+		margin: -24rpx 16rpx 16rpx;
+	}
+
+	.setting-item {
+		padding: 30rpx 32rpx;
+	}
+
+	.setting-label {
+		font-size: 28rpx;
+	}
+
+	.setting-arrow {
+		font-size: 22rpx;
+	}
+
+	.app-info {
+		margin-top: 48rpx;
+		padding-bottom: 32rpx;
+	}
+
+	.app-version {
+		font-size: 22rpx;
+	}
+
+	.dialog-content {
+		padding: 36rpx;
+	}
+
+	.dialog-title {
+		font-size: 30rpx;
+		margin-bottom: 40rpx;
+	}
+
+	.option-item {
+		margin-bottom: 30rpx;
+	}
+
+	.option-radio {
+		width: 32rpx;
+		height: 32rpx;
+		margin-right: 20rpx;
+	}
+
+	.option-radio.selected::after {
+		width: 14rpx;
+		height: 14rpx;
+	}
+
+	.option-label {
+		font-size: 28rpx;
+	}
+
+	.dialog-buttons {
+		gap: 16rpx;
+	}
+
+	.dialog-btn {
+		padding: 20rpx;
+	}
+
+	.btn-text {
+		font-size: 28rpx;
+	}
 }
 
-.confirm-btn .btn-text {
-	color: #fff;
+@media screen and (min-width: 768px) {
+	.user-section {
+		padding: 100rpx 40rpx;
+		max-width: 800rpx;
+		margin: 0 auto;
+	}
+
+	.settings-list {
+		max-width: 760rpx;
+		margin: -30rpx auto 20rpx;
+	}
+
+	.app-info {
+		margin-top: 80rpx;
+		padding-bottom: 60rpx;
+	}
+
+	.dialog-content {
+		max-width: 550rpx;
+		padding: 56rpx;
+	}
+
+	.dialog-title {
+		font-size: 36rpx;
+		margin-bottom: 56rpx;
+	}
+
+	.option-item {
+		margin-bottom: 40rpx;
+	}
+
+	.option-label {
+		font-size: 32rpx;
+	}
+
+	.dialog-btn {
+		padding: 28rpx;
+	}
+
+	.btn-text {
+		font-size: 32rpx;
+	}
 }
 </style>

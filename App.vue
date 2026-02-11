@@ -34,6 +34,54 @@
 <style>
 	/*每个页面公共css */
 	page {
-		background-color: #f5f5f5;
+		background-color: #F0FDFA;
+		font-family: 'Inter', sans-serif;
+	}
+
+	/* TabBar 美化 */
+	.uni-tabbar {
+		background-color: #fff !important;
+		border-top: 1rpx solid #E0F2F1 !important;
+		box-shadow: 0 -2rpx 12rpx rgba(13, 148, 136, 0.1) !important;
+		height: 56px !important;
+	}
+
+	.uni-tabbar .uni-tabbar__item {
+		font-size: 14px !important;
+		color: #64748B !important;
+	}
+
+	.uni-tabbar .uni-tabbar__item.uni-tabbar__item--active {
+		color: #0D9488 !important;
+	}
+
+	/* 中间加号按钮特殊样式 */
+	.uni-tabbar .uni-tabbar__item:nth-child(2) {
+		position: relative;
+	}
+
+	.uni-tabbar .uni-tabbar__item:nth-child(2) .uni-tabbar__icon {
+		background-color: #0D9488 !important;
+		border-radius: 50% !important;
+		width: 48px !important;
+		height: 48px !important;
+		line-height: 48px !important;
+		text-align: center !important;
+		color: #fff !important;
+		font-size: 24px !important;
+		font-weight: bold !important;
+		margin-top: -12px !important;
+		box-shadow: 0 4rpx 12rpx rgba(13, 148, 136, 0.3) !important;
+		transition: all 0.2s ease !important;
+	}
+
+	.uni-tabbar .uni-tabbar__item:nth-child(2) .uni-tabbar__icon:hover {
+		transform: scale(1.05) !important;
+		background-color: #14B8A6 !important;
+	}
+
+	/* 移除中间按钮的文字 */
+	.uni-tabbar .uni-tabbar__item:nth-child(2) .uni-tabbar__label {
+		display: none !important;
 	}
 </style>

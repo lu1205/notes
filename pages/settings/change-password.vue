@@ -107,16 +107,20 @@
 </script>
 
 <style>
+	/* 导入设计系统样式 */
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 	.content {
 		flex: 1;
 		padding: 40rpx 30rpx;
-		background-color: #f5f5f5;
+		background-color: #F0FDFA;
+		font-family: 'Inter', sans-serif;
 	}
 
 	.settings-title {
 		font-size: 36rpx;
-		font-weight: bold;
-		color: #333;
+		font-weight: 600;
+		color: #134E4A;
 		margin-bottom: 60rpx;
 		text-align: center;
 	}
@@ -126,37 +130,44 @@
 		border-radius: 10rpx;
 		padding: 0 30rpx;
 		margin-bottom: 20rpx;
-		box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+		box-shadow: 0 4rpx 12rpx rgba(13, 148, 136, 0.1);
 	}
 
 	.form-label {
 		display: block;
 		font-size: 28rpx;
-		color: #666;
+		color: #134E4A;
 		margin-bottom: 15rpx;
 		padding-top: 30rpx;
 	}
 
 	.form-input {
 		font-size: 28rpx;
-		color: #333;
+		color: #134E4A;
 		padding-bottom: 30rpx;
 		width: 100%;
+		border-bottom: 2rpx solid #E0F2F1;
 	}
 
 	.save-btn {
-		background-color: #007aff;
+		background-color: #0D9488;
 		border-radius: 10rpx;
 		padding: 30rpx;
 		text-align: center;
 		margin-top: 60rpx;
-		box-shadow: 0 4rpx 12rpx rgba(0, 122, 255, 0.3);
+		box-shadow: 0 4rpx 12rpx rgba(13, 148, 136, 0.3);
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.save-btn:hover {
+		background-color: #14B8A6;
 	}
 
 	.save-btn-text {
 		font-size: 32rpx;
 		color: #fff;
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	.error-text {
@@ -166,6 +177,27 @@
 
 	.error-text text {
 		font-size: 24rpx;
-		color: #ff4d4f;
+		color: #ef4444;
+	}
+
+	/* 响应式设计 */
+	@media (max-width: 768px) {
+		.content {
+			padding: 30rpx 20rpx;
+		}
+
+		.settings-title {
+			font-size: 32rpx;
+			margin-bottom: 40rpx;
+		}
+
+		.form-item {
+			padding: 0 20rpx;
+		}
+
+		.save-btn {
+			margin-top: 40rpx;
+			padding: 25rpx;
+		}
 	}
 </style>

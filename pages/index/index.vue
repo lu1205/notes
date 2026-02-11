@@ -126,10 +126,19 @@
 </script>
 
 <style>
+	/* 导入Inter字体 */
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+	* {
+		font-family: 'Inter', sans-serif;
+		box-sizing: border-box;
+	}
+
 	.content {
 		flex: 1;
 		padding: 20rpx;
 		position: relative;
+		background-color: #F0FDFA;
 	}
 
 	.notes-list {
@@ -138,48 +147,80 @@
 
 	.note-item {
 		background-color: #fff;
-		border-radius: 10rpx;
-		padding: 20rpx;
+		border-radius: 12rpx;
+		padding: 24rpx;
 		margin-bottom: 20rpx;
-		box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+		border: 1rpx solid #E0F2F1;
+		transition: all 0.2s ease;
+		cursor: pointer;
+	}
+
+	.note-item:hover {
+		border-color: #0D9488;
+		background-color: #F8FFFE;
 	}
 
 	.note-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 10rpx;
+		align-items: flex-start;
+		margin-bottom: 16rpx;
+		flex-wrap: wrap;
+		gap: 12rpx;
 	}
 
 	.note-title {
-		font-size: 32rpx;
-		font-weight: bold;
-		color: #333;
+		font-size: 34rpx;
+		font-weight: 600;
+		color: #134E4A;
 		flex: 1;
+		min-width: 0;
+		line-height: 48rpx;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	.note-time {
-		font-size: 24rpx;
-		color: #999;
-		margin-left: 20rpx;
+		font-size: 22rpx;
+		color: #64748B;
+		white-space: nowrap;
+		align-self: flex-start;
 	}
 
 	.note-content {
 		font-size: 28rpx;
-		color: #666;
-		line-height: 40rpx;
-		margin-bottom: 15rpx;
+		color: #334155;
+		line-height: 44rpx;
+		margin-bottom: 20rpx;
 		word-break: break-all;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
 	}
 
 	.note-footer {
 		display: flex;
 		justify-content: flex-end;
+		padding-top: 16rpx;
+		border-top: 1rpx solid #E0F2F1;
 	}
 
 	.note-delete {
 		font-size: 24rpx;
-		color: #ff4d4f;
+		color: #F97316;
+		padding: 8rpx 16rpx;
+		border-radius: 6rpx;
+		transition: all 0.2s ease;
+		cursor: pointer;
+	}
+
+	.note-delete:hover {
+		background-color: rgba(249, 115, 22, 0.1);
 	}
 
 	.empty-state {
@@ -188,36 +229,134 @@
 		align-items: center;
 		justify-content: center;
 		height: 600rpx;
+		padding: 0 40rpx;
 	}
 
 	.empty-text {
-		font-size: 32rpx;
-		color: #999;
-		margin-bottom: 20rpx;
+		font-size: 36rpx;
+		color: #64748B;
+		margin-bottom: 24rpx;
+		font-weight: 500;
+		text-align: center;
 	}
 
 	.empty-hint {
-		font-size: 24rpx;
-		color: #ccc;
+		font-size: 26rpx;
+		color: #94A3B8;
+		text-align: center;
+		line-height: 36rpx;
 	}
 
 	.add-btn {
 		position: fixed;
 		bottom: 40rpx;
 		right: 40rpx;
-		width: 80rpx;
-		height: 80rpx;
-		background-color: #007aff;
+		width: 90rpx;
+		height: 90rpx;
+		background-color: #0D9488;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0 4rpx 12rpx rgba(0, 122, 255, 0.4);
+		transition: all 0.2s ease;
+		z-index: 999;
+		cursor: pointer;
+	}
+
+	.add-btn:hover {
+		background-color: #0F766E;
+		transform: scale(1.05);
 	}
 
 	.add-btn-text {
-		font-size: 48rpx;
+		font-size: 52rpx;
 		color: #fff;
-		line-height: 80rpx;
+		line-height: 90rpx;
+		font-weight: 300;
+	}
+
+	/* 响应式设计 */
+	@media screen and (max-width: 375px) {
+		.content {
+			padding: 16rpx;
+		}
+
+		.note-item {
+			padding: 20rpx;
+			margin-bottom: 16rpx;
+		}
+
+		.note-title {
+			font-size: 30rpx;
+			line-height: 42rpx;
+		}
+
+		.note-content {
+			font-size: 26rpx;
+			line-height: 40rpx;
+			margin-bottom: 16rpx;
+		}
+
+		.note-time {
+			font-size: 20rpx;
+		}
+
+		.empty-text {
+			font-size: 32rpx;
+			margin-bottom: 20rpx;
+		}
+
+		.empty-hint {
+			font-size: 24rpx;
+			line-height: 32rpx;
+		}
+
+		.add-btn {
+			width: 80rpx;
+			height: 80rpx;
+			bottom: 32rpx;
+			right: 32rpx;
+		}
+
+		.add-btn-text {
+			font-size: 48rpx;
+			line-height: 80rpx;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		.content {
+			padding: 30rpx;
+			max-width: 800rpx;
+			margin: 0 auto;
+		}
+
+		.note-item {
+			padding: 30rpx;
+			margin-bottom: 24rpx;
+		}
+
+		.note-title {
+			font-size: 36rpx;
+			line-height: 52rpx;
+		}
+
+		.note-content {
+			font-size: 30rpx;
+			line-height: 48rpx;
+			margin-bottom: 24rpx;
+		}
+
+		.add-btn {
+			width: 100rpx;
+			height: 100rpx;
+			bottom: 48rpx;
+			right: 48rpx;
+		}
+
+		.add-btn-text {
+			font-size: 56rpx;
+			line-height: 100rpx;
+		}
 	}
 </style>

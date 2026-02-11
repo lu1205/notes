@@ -80,13 +80,17 @@
 </script>
 
 <style>
+	/* 导入设计系统样式 */
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 	.content {
 		flex: 1;
-		background-color: #f5f5f5;
+		background-color: #F0FDFA;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		font-family: 'Inter', sans-serif;
 	}
 
 	.app-logo {
@@ -96,46 +100,54 @@
 	.logo-text {
 		font-size: 48rpx;
 		font-weight: bold;
-		color: #007aff;
+		color: #0D9488;
 	}
 
 	.verify-form {
 		width: 80%;
+		max-width: 400px;
 		background-color: #fff;
 		border-radius: 20rpx;
 		padding: 60rpx 40rpx;
-		box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4rpx 12rpx rgba(13, 148, 136, 0.1);
 	}
 
 	.form-title {
 		font-size: 32rpx;
-		font-weight: bold;
-		color: #333;
+		font-weight: 600;
+		color: #134E4A;
 		text-align: center;
 		margin-bottom: 40rpx;
 	}
 
 	.password-input {
 		font-size: 28rpx;
-		color: #333;
+		color: #134E4A;
 		padding: 25rpx 0;
-		border-bottom: 2rpx solid #eee;
+		border-bottom: 2rpx solid #E0F2F1;
 		margin-bottom: 40rpx;
 		text-align: center;
+		width: 100%;
 	}
 
 	.verify-btn {
-		background-color: #007aff;
+		background-color: #0D9488;
 		border-radius: 10rpx;
 		padding: 25rpx;
 		text-align: center;
 		margin-bottom: 20rpx;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.verify-btn:hover {
+		background-color: #14B8A6;
 	}
 
 	.verify-btn-text {
 		font-size: 32rpx;
 		color: #fff;
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	.error-text {
@@ -144,16 +156,38 @@
 
 	.error-text text {
 			font-size: 24rpx;
-			color: #ff4d4f;
+			color: #ef4444;
 		}
 		
 		.change-password-btn {
 			margin-top: 30rpx;
 			text-align: center;
+			cursor: pointer;
 		}
 		
 		.change-password-text {
 			font-size: 28rpx;
-			color: #007aff;
+			color: #0D9488;
+			transition: color 0.2s ease;
 		}
+
+		.change-password-text:hover {
+			color: #14B8A6;
+		}
+
+	/* 响应式设计 */
+	@media (max-width: 768px) {
+		.verify-form {
+			width: 90%;
+			padding: 40rpx 30rpx;
+		}
+
+		.logo-text {
+			font-size: 40rpx;
+		}
+
+		.form-title {
+			font-size: 28rpx;
+		}
+	}
 </style>
