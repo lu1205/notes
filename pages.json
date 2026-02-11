@@ -1,0 +1,90 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/auth/verify",
+			"style": {
+				"navigationBarTitleText": "密码验证",
+				"navigationBarHidden": true
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "笔记",
+				"navigationBarRightButtonText": "设置",
+				"navigationBarRightButtonTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/note/detail",
+			"style": {
+				"navigationBarTitleText": "笔记详情"
+			}
+		},
+		{
+			"path": "pages/note/create",
+			"style": {
+				"navigationBarTitleText": "新建笔记"
+			}
+		},
+		{
+			"path": "pages/settings/password",
+			"style": {
+				"navigationBarTitleText": "密码设置"
+			}
+		},
+		{
+			"path": "pages/settings/change-password",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "笔记"
+			}
+		},
+		{
+			"path": "pages/home/create",
+			"style": {
+				"navigationBarTitleText": "新建笔记"
+			}
+		},
+		{
+			"path": "pages/home/mine",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "笔记",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#007aff",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"height": "50px",
+		"fontSize": "16px",
+		"list": [
+			{
+				"pagePath": "pages/home/index",
+				"text": "笔记"
+			},
+			{
+				"pagePath": "pages/home/create",
+				"text": "+"
+			},
+			{
+				"pagePath": "pages/home/mine",
+				"text": "我的"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
